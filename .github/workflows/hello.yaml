@@ -1,0 +1,25 @@
+#Workflow
+
+name: Hello
+#On tells when the workflow should run (Give indentation by tab)
+on: 
+  workflow_dispatch: 
+#Job tells that the workflow should do, there can be one or more than one jobs, hence we write jobs
+jobs:
+  say-hello:
+  #Create a Ephermal container with ubuntu letest
+    runs-on: ubuntu-latest
+    #That ephermal ontainer will have step to execute 
+    steps:
+      - name: Say hello to everyone
+        run: echo "Hello Dosto"
+#Should me inside the workflow
+
+# Steps
+# Should be insite the job
+
+# Actions
+# Should be inside the Steps
+
+
+
