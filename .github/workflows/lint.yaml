@@ -1,15 +1,14 @@
 name : linter
 
 on:
-  push:
-    paths: "*.py"
+  workflow_dispatch: 
 
 jobs:
   auto-linter:
     runs-on: ubuntu-latest
     steps:
       - name: code clone
-        uses: actions/chechout@v7
+        uses: actions/checkout@v7
       - name: Install linter
         run: pip install ruff
       - name: linting code
