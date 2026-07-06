@@ -1,27 +1,13 @@
-import os
-import sys
-import math
+from flask import Flask
 
-def Bad_Name_Function( x,y ):
-    """A poorly styled function"""
-    Result = x+y
-    return Result
+# 1. Initialize the application instance
+app = Flask(__name__)
 
-def check_score(score):
-    if score > 90:
-        return "A"
-    else:
-        return "B"
-    print("This line can never be reached!")
+# 2. Define a route and bind it to a function
+@app.route("/")
+def home():
+    return "Hello, World! Welcome to Flask."
 
-class missing_docstring:
-    def __init__(self):
-        self.Value = 10
-
-def long_lines_calculator():
-    very_long_variable_name_that_goes_on_and_on_and_is_completely_unnecessary = "This line is extremely long and will definitely trigger a line length limit violation in almost every default python linter configuration out there"
-    return very_long_variable_name_that_goes_on_and_on_and_is_completely_unnecessary
-
-undefined_variable = some_random_variable + 5
-
-print(Bad_Name_Function(5,10))
+# 3. Start the local development server
+if __name__ == "__main__":
+    app.run(debug=True)
