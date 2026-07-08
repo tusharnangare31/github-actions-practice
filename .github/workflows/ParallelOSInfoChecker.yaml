@@ -1,36 +1,38 @@
 name: Parallel OS Info Checker
 
-on: 
+on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
+  # Job 1: Linux Runner
   linux-info:
     runs-on: ubuntu-latest
     steps:
-      - name: The OS name
-        run: echo "The OS name : ${{ runner.os }}"
-      - name: The runner's hostname
-        run: echo "Runner hostname : ${{ hostname }}"
-      - name: Find current user
-        run: echo "Current user: ${{ pwd }}"
-  mac-info:
-      runs-on: macos-latest
-      steps:
-      - name: The OS name
-        run: echo "The OS name : ${{ runner.os }}"
-      - name: The runner's hostname
-        run: echo "Runner hostname : ${{ hostname }}"
-      - name: Find current user
-        run: echo "Current user: ${{ pwd }}"
-  windows-info:
-    run-on: windows-latest
-    steps:
-      steps:
-      - name: The OS name
-        run: Write-Output "OS Name: ${{ runner.os }}"
-      - name: The runner's hostname
-        run: Write-Output "Hostname: $env:COMPUTERNAME"
-      - name: Find current user
-        run: Write-Output "Current User: $env:USERNAME"
+      - name: Print Linux Details
+        run: |
+          echo "OS Name: ${{ runner.os }}"
+          echo "Hostname: $(hostname)"
+          echo "Current User: $(whoami)"
 
-  
+  # Job 2: Windows Runner
+  windows-info:
+    runs-on: windows-latest
+    steps:
+      - name: Print Windows Details
+        shell: pwsh
+        run: |
+          Write-Output "OS Name: ${{ runner.os }}"
+          Write-Output "Hostname: $env:COMPUTERNAME"
+          Write-Output "Current User: $env:USERNAME"
+
+  # Job 3: macOS Runner
+  macos-info:
+    runs-on: macos-latest
+    steps:
+      - name: Print macOS Details
+        run: |
+          echo "OS Name: ${{ runner.os }}"
+          echo "Hostname: $(hostname)"
+          echo "Current User: $(whoami)"
