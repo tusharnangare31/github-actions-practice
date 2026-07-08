@@ -1,0 +1,36 @@
+name: Parallel OS Info Checker
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  linux-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: The OS name
+        run: echo "The OS name : ${{ runner.os }}"
+      - name: The runner's hostname
+        run: echo "Runner hostname : ${{ hostname }}"
+      - name: Find current user
+        run: echo "Current user: ${{ pwd }}"
+  mac-info:
+      runs-on: macos-latest
+      steps:
+      - name: The OS name
+        run: echo "The OS name : ${{ runner.os }}"
+      - name: The runner's hostname
+        run: echo "Runner hostname : ${{ hostname }}"
+      - name: Find current user
+        run: echo "Current user: ${{ pwd }}"
+  windows-info:
+    run-on: windows-latest
+    steps:
+      steps:
+      - name: The OS name
+        run: Write-Output "OS Name: ${{ runner.os }}"
+      - name: The runner's hostname
+        run: Write-Output "Hostname: $env:COMPUTERNAME"
+      - name: Find current user
+        run: Write-Output "Current User: $env:USERNAME"
+
+  
